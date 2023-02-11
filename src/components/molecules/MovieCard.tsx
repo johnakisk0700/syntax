@@ -11,12 +11,17 @@ import {
 import React from "react";
 import { IMovie } from "../../models/movies";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useFavourites } from "../../context/FavouritesProvider";
+import { IFavouritesProvider } from "../../models/favourites";
 
 type Props = {
   movie: IMovie;
 };
 
 function MovieCard({ movie }: Props) {
+  const { checkIfFavouriteExists, addOrRemoveFavourite } =
+    useFavourites() as IFavouritesProvider;
+  const isFavourite = checkIfFavouriteExists(movie.imdbID);
   return (
     <Card
       sx={{
@@ -47,8 +52,13 @@ function MovieCard({ movie }: Props) {
           <Button variant="outlined" sx={{ fontSize: "0.75rem" }}>
             MORE
           </Button>
-          <IconButton color="error">
-            <FavoriteIcon color="disabled" />
+          <IconButton
+            color="error"
+            onClick={() => {
+              addOrRemoveFavourite(movie);
+            }}
+          >
+            <FavoriteIcon color={isFavourite ? "error" : "disabled"} />
           </IconButton>
         </Stack>
       </Box>
