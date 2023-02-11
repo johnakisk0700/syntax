@@ -4,11 +4,13 @@ import {
   Card,
   CardHeader,
   CardMedia,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
 import { IMovie } from "../../models/movies";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 type Props = {
   movie: IMovie;
@@ -18,36 +20,50 @@ function MovieCard({ movie }: Props) {
   return (
     <Card
       sx={{
-        display: { md: "flex" },
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
-        height: "300px",
+        height: { md: "300px" },
       }}
     >
       <Box
-        flexBasis={"52.5%"}
+        flexBasis={{ md: "52.5%" }}
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          p: 1,
+          gap: 3,
+          order: { xs: 2, md: 1 },
         }}
       >
         <CardHeader
           title={movie.Title}
           titleTypographyProps={{ fontSize: "1.125rem" }}
           subheader={movie.Year}
+          sx={{ p: 0 }}
         />
-        <Stack direction="row">
-          <Typography>{"<3"}</Typography>
+        <Stack direction="row" gap={1}>
           <Button variant="outlined" sx={{ fontSize: "0.75rem" }}>
             MORE
           </Button>
+          <IconButton color="error">
+            <FavoriteIcon color="disabled" />
+          </IconButton>
         </Stack>
       </Box>
-      <Box flexBasis={"47.5%"} position="relative" overflow="hidden">
+      <Box
+        flexBasis={{ md: "47.5%" }}
+        sx={{ aspectRatio: "auto" }}
+        order={{ xs: 1, md: 2 }}
+      >
         <CardMedia
           component="img"
-          height="100%"
-          sx={{ objectFit: "cover", position: "absolute" }}
+          sx={{
+            objectFit: { xs: "fill", md: "cover" },
+            height: "100%",
+            objectPosition: "top",
+          }}
           image={movie.Poster}
           alt={`${movie.Title} poster`}
         />

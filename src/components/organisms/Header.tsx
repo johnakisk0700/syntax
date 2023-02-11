@@ -1,7 +1,7 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import HeaderMenuBar from "./HeaderMenuBar";
+import HeaderMenuBar from "../molecules/HeaderMenuBar";
 
 type Props = {};
 

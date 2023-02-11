@@ -5,10 +5,10 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import { useFetchMovies } from "../../../hooks/useFetchMovies";
-import { IMovie } from "../../../models/movies";
-import MovieCard from "../../molecules/MovieCard";
-import MovieSearchForm from "../../molecules/MovieSearchForm/MovieSearchForm";
+import { useFetchMovies } from "../../hooks/useFetchMovies";
+import { IMovie } from "../../models/movies";
+import MovieCard from "../molecules/MovieCard";
+import MovieSearchForm from "../molecules/MovieSearchForm/MovieSearchForm";
 
 type Props = {};
 

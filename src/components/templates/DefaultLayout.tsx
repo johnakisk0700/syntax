@@ -1,7 +1,7 @@
 import { Container, Paper } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import Footer from "../organisms/Footer/Footer";
-import Header from "../organisms/Header/Header";
+import Footer from "../organisms/Footer";
+import Header from "../organisms/Header";
 
 function DefaultLayout() {
   return (
