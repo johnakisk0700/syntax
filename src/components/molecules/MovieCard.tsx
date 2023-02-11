@@ -13,12 +13,17 @@ import { IMovie } from "../../models/movies";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavourites } from "../../context/FavouritesProvider";
 import { IFavouritesProvider } from "../../models/favourites";
+import { useRecentlyViewed } from "../../context/RecentlyViewedProvider";
 
 type Props = {
   movie: IMovie;
 };
 
 function MovieCard({ movie }: Props) {
+  const { addToRecentlyViewed } = useRecentlyViewed() as {
+    addToRecentlyViewed: (movie: IMovie) => void;
+  };
+
   const { checkIfFavouriteExists, addOrRemoveFavourite } =
     useFavourites() as IFavouritesProvider;
   const isFavourite = checkIfFavouriteExists(movie.imdbID);
@@ -49,7 +54,11 @@ function MovieCard({ movie }: Props) {
           sx={{ p: 0 }}
         />
         <Stack direction="row" gap={1}>
-          <Button variant="outlined" sx={{ fontSize: "0.75rem" }}>
+          <Button
+            variant="outlined"
+            sx={{ fontSize: "0.75rem" }}
+            onClick={() => addToRecentlyViewed(movie)}
+          >
             MORE
           </Button>
           <IconButton
