@@ -91,6 +91,7 @@ export interface IMovieShort {
 
 export interface MoviesResponse {
   Search?: IMovieShort[];
+  totalResults?: string;
   Error?: string;
 }
 

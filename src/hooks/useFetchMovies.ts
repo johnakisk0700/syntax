@@ -10,7 +10,8 @@ import { IMovieShort, MoviesResponse } from "../models/movies";
  */
 
 export const useFetchMovies = () => {
-  const [data, setData] = useState<IMovieShort[] | undefined>(undefined);
+  const [movies, setMovies] = useState<IMovieShort[] | undefined>(undefined);
+  const [data, setData] = useState<MoviesResponse | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,11 +20,16 @@ export const useFetchMovies = () => {
   useEffect(() => {
     const abortController = new AbortController();
     (async () => {
+      if (!Array.from(searchParams).length) {
+        setData(undefined);
+        setMovies(undefined);
+        setLoading(false);
+        return;
+      }
       if (!searchParams.get("s")) return;
       try {
         setLoading(true);
         setError("");
-        setData(undefined);
         await new Promise((r) => setTimeout(r, 2000));
         const { data } = await dataApi.get<MoviesResponse>("", {
           params: Object.fromEntries(searchParams),
@@ -31,7 +37,8 @@ export const useFetchMovies = () => {
         });
         // if success is error:
         if (data.Error) throw new Error(data.Error);
-        setData(data.Search);
+        setMovies(data.Search);
+        setData(data);
         setLoading(false);
       } catch (e: any) {
         if (e?.message === "canceled") return;
@@ -42,5 +49,5 @@ export const useFetchMovies = () => {
     return () => abortController.abort();
   }, [searchParams]);
 
-  return { loading, data, error };
+  return { loading, data, movies, error };
 };

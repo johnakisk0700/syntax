@@ -18,7 +18,12 @@ function MovieArticle({ movie }: Props) {
       >
         <img
           src={movie.Poster}
-          style={{ maxHeight: "444px", objectFit: "contain" }}
+          style={{
+            maxHeight: "444px",
+            minWidth: "300px",
+            objectFit: "contain",
+          }}
+          alt={`${movie.Title} poster`}
         />
         <MovieInfoList movie={movie} />
       </Box>

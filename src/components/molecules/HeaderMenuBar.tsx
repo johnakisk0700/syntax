@@ -18,7 +18,9 @@ function HeaderMenuBar({}: Props) {
         flexGrow: 1,
       }}
     >
-      <Logo size={64} />
+      <NavLink to="/">
+        <Logo size={72} />
+      </NavLink>
       <Box>
         <NavLink
           to="/favourites"
