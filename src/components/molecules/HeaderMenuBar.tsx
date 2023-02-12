@@ -39,14 +39,6 @@ function HeaderMenuBar({}: Props) {
             <FavoriteIcon />
           </IconButton>
         </NavLink>
-        <NavLink
-          to="/"
-          style={({ isActive }) => (isActive ? { display: "none" } : {})}
-        >
-          <Button variant="text" sx={{ fontSize: "0.875rem" }}>
-            BACK TO HOME
-          </Button>
-        </NavLink>
       </Box>
     </Box>
   );

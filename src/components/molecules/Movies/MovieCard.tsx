@@ -9,19 +9,26 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { IMovie } from "../../models/movies";
+import { IMovieShort } from "../../../models/movies";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useFavourites } from "../../context/FavouritesProvider";
-import { IFavouritesProvider } from "../../models/favourites";
-import { useRecentlyViewed } from "../../context/RecentlyViewedProvider";
+import { useFavourites } from "../../../context/FavouritesProvider";
+import { IFavouritesProvider } from "../../../models/favourites";
+import { useRecentlyViewed } from "../../../context/RecentlyViewedProvider";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-  movie: IMovie;
+  movie: IMovieShort;
 };
 
 function MovieCard({ movie }: Props) {
+  const navigate = useNavigate();
   const { addToRecentlyViewed } = useRecentlyViewed() as {
-    addToRecentlyViewed: (movie: IMovie) => void;
+    addToRecentlyViewed: (movie: IMovieShort) => void;
+  };
+
+  const handleMoreClick = () => {
+    addToRecentlyViewed(movie);
+    navigate(`movie/${movie.imdbID}`);
   };
 
   const { checkIfFavouriteExists, addOrRemoveFavourite } =
@@ -57,7 +64,7 @@ function MovieCard({ movie }: Props) {
           <Button
             variant="outlined"
             sx={{ fontSize: "0.75rem" }}
-            onClick={() => addToRecentlyViewed(movie)}
+            onClick={handleMoreClick}
           >
             MORE
           </Button>

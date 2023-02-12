@@ -6,9 +6,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useFetchMovies } from "../../hooks/useFetchMovies";
-import { IMovie } from "../../models/movies";
-import MovieCard from "../molecules/MovieCard";
-import MovieSearchForm from "../molecules/MovieSearchForm/MovieSearchForm";
+import { IMovieShort } from "../../models/movies";
+import MovieCard from "../molecules/Movies/MovieCard";
+import MovieSearchForm from "../molecules/Movies/MovieSearchForm/MovieSearchForm";
 
 type Props = {};
 
@@ -23,20 +23,25 @@ function MovieFinder({}: Props) {
           What are we searching for today?
         </Typography>
       ) : null}
-      {error ? <Alert severity="error">{error}</Alert> : null}
+      {error && !loading ? <Alert severity="error">{error}</Alert> : null}
       <Grid container spacing={3}>
-        {data &&
-          data.map((movie: IMovie) => (
-            <Grid item xs={12} md={6}>
-              <MovieCard movie={movie} />
-            </Grid>
-          ))}
-        {!data && loading
+        {data && !loading
+          ? data.map((movie: IMovieShort) => (
+              <Grid item xs={12} md={6}>
+                <MovieCard movie={movie} />
+              </Grid>
+            ))
+          : null}
+        {loading
           ? Array(10)
               .fill(0)
               .map(() => (
                 <Grid item xs={12} md={6}>
-                  <Skeleton variant="rounded" height="300px" width="100%" />
+                  <Skeleton
+                    variant="rounded"
+                    width="100%"
+                    sx={{ height: { xs: "700px", sm: "300px" } }}
+                  />
                 </Grid>
               ))
           : null}

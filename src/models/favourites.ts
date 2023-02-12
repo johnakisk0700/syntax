@@ -1,11 +1,11 @@
-import { IMovie } from "./movies";
+import { IMovieShort } from "./movies";
 
 export interface Favourites {
-  [key: string]: IMovie;
+  [key: string]: IMovieShort;
 }
 
 export interface IFavouritesProvider {
-  addOrRemoveFavourite: (movie: IMovie) => void;
+  addOrRemoveFavourite: (movie: IMovieShort) => void;
   checkIfFavouriteExists: (imdbID: string) => boolean;
   favourites: Favourites | null;
 }

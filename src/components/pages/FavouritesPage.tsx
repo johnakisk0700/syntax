@@ -3,8 +3,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useFavourites } from "../../context/FavouritesProvider";
 import { IFavouritesProvider } from "../../models/favourites";
-import { IMovie } from "../../models/movies";
-import MovieCard from "../molecules/MovieCard";
+import { IMovieShort } from "../../models/movies";
+import MovieCard from "../molecules/Movies/MovieCard";
 
 type Props = {};
 
@@ -20,7 +20,7 @@ function FavouritesPage({}: Props) {
       </Typography>
       <Grid container spacing={3}>
         {favourites &&
-          Object.values(favourites).map((movie: IMovie) => (
+          Object.values(favourites).map((movie: IMovieShort) => (
             <Grid item xs={12} md={6}>
               <MovieCard movie={movie} />
             </Grid>

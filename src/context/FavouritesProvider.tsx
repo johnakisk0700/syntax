@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { Favourites, IFavouritesProvider } from "../models/favourites";
-import { IMovie } from "../models/movies";
+import { IMovieShort } from "../models/movies";
 
 export const FavouritesContext = createContext<IFavouritesProvider | null>(
   null
@@ -35,7 +35,7 @@ export const FavouritesProvider = ({ children }: PropsWithChildren) => {
     }
   }, [favourites]);
 
-  const addOrRemoveFavourite = (movie: IMovie) => {
+  const addOrRemoveFavourite = (movie: IMovieShort) => {
     const imdbID = movie.imdbID;
     setFavourites((prev) => {
       if (prev && prev[imdbID]) {

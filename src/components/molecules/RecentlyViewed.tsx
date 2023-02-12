@@ -1,12 +1,12 @@
 import { Box, Chip, Typography } from "@mui/material";
 import { useRecentlyViewed } from "../../context/RecentlyViewedProvider";
-import { IMovie } from "../../models/movies";
+import { IMovieShort } from "../../models/movies";
 
 type Props = {};
 
 function RecentlyViewed({}: Props) {
   const { recentlyViewed } = useRecentlyViewed() as {
-    recentlyViewed: IMovie[];
+    recentlyViewed: IMovieShort[];
   };
   return (
     <Box my={2}>
