@@ -28,7 +28,7 @@ function MovieCard({ movie }: Props) {
 
   const handleMoreClick = () => {
     addToRecentlyViewed(movie);
-    navigate(`movie/${movie.imdbID}`);
+    navigate(`/movie/${movie.imdbID}`);
   };
 
   const { checkIfFavouriteExists, addOrRemoveFavourite } =

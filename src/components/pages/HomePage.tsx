@@ -14,7 +14,6 @@ function HomePage({}: Props) {
         <title>Film Society Club</title>
       </Helmet>
       <MovieFinder />
-      <RecentlyViewed />
     </>
   );
 }
