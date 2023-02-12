@@ -18,6 +18,7 @@ function MoviePage({}: Props) {
   const movie = useMemo(() => data && new Movie(data), [data]);
   if (loading) return <MovieArticleSkeleton />;
   if (movie) return <MovieArticle movie={movie} />;
+  return <></>;
 }
 
 export default MoviePage;
