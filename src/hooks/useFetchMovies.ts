@@ -23,6 +23,7 @@ export const useFetchMovies = () => {
       if (!Array.from(searchParams).length) {
         setData(undefined);
         setMovies(undefined);
+        setError("");
         setLoading(false);
         return;
       }
@@ -30,6 +31,8 @@ export const useFetchMovies = () => {
       try {
         setLoading(true);
         setError("");
+        setMovies(undefined);
+        setData(undefined);
         await new Promise((r) => setTimeout(r, 2000));
         const { data } = await dataApi.get<MoviesResponse>("", {
           params: Object.fromEntries(searchParams),

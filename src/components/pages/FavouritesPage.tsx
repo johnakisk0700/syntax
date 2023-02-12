@@ -21,7 +21,7 @@ function FavouritesPage({}: Props) {
       <Grid container spacing={3}>
         {favourites &&
           Object.values(favourites).map((movie: IMovieShort) => (
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} key={movie.imdbID}>
               <MovieCard movie={movie} />
             </Grid>
           ))}
