@@ -33,7 +33,6 @@ export const useFetchMovies = () => {
         setError("");
         setMovies(undefined);
         setData(undefined);
-        await new Promise((r) => setTimeout(r, 2000));
         const { data } = await dataApi.get<MoviesResponse>("", {
           params: Object.fromEntries(searchParams),
           signal: abortController.signal,

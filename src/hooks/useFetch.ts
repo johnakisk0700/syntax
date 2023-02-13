@@ -16,7 +16,6 @@ export const useFetch = <T>(
     (async () => {
       try {
         setLoading(true);
-        await new Promise((r) => setTimeout(r, 2000));
         const { data } = await api.get<T>(url, {
           params: JSON.parse(params),
           signal: abortController.signal,
